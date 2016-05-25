@@ -1,12 +1,10 @@
 ### Scala template
-*.class
 *.log
 
 # sbt specific
 .cache
 .lib/
 dist/*
-target/
 lib_managed/
 src_managed/
 project/boot/
@@ -25,7 +23,7 @@ project/plugins/project/
 
 # User-specific stuff:
 .idea
-project
+target
 
 ## File-based project format:
 *.iws

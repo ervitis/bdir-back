@@ -12,6 +12,10 @@ libraryDependencies ++= Seq(
   "ch.qos.logback" % "logback-classic" % "1.1.7" % "runtime"
 )
 
+resolvers ++= Seq(
+  "xsbt-web-plugin" at "https://bintray.com/earldouglas/sbt-plugins/xsbt-web-plugin"
+)
+
 lazy val root = (project in file("."))
   .enablePlugins(JettyPlugin)
   .settings(

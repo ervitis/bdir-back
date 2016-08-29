@@ -9,7 +9,9 @@ libraryDependencies ++= Seq(
   "org.eclipse.jetty" % "jetty-webapp" % "9.2.14.v20151106" % "container;compile",
   "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016",
   "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
-  "ch.qos.logback" % "logback-classic" % "1.1.7" % "runtime"
+  "ch.qos.logback" % "logback-classic" % "1.1.7" % "runtime",
+  "org.scalatra" %% "scalatra-auth" % "2.4.0",
+  "org.mongodb" %% "casbah" % "3.1.1"
 )
 
 resolvers += "xsbt-web-plugin" at "https://dl.bintray.com/earldouglas/sbt-plugins"

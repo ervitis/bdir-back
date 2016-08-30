@@ -4,19 +4,19 @@ import org.scalatest.{FlatSpec, Matchers}
 class TestModels extends FlatSpec with Matchers {
   "The user model" should "take password and name" in {
     intercept[IllegalArgumentException] {
-      User("", "")
+      User("", "", "")
     }
 
     intercept[IllegalArgumentException] {
-      User("", "hello")
+      User("", "hello", "")
     }
 
     intercept[IllegalArgumentException] {
-      User("hello", "")
+      User("hello", "", "")
     }
 
     intercept[IllegalArgumentException] {
-      User(null, null)
+      User(null, null, null)
     }
   }
 }

@@ -1,26 +1,37 @@
-import sbt.Keys._
+val ScalatraVersion = "2.6.3"
+
+organization := "com.bdir.back"
+
+name := "bdir-back"
+
+version := "1.0.0"
+
+scalaVersion := "2.12.6"
+
+resolvers += Classpaths.typesafeReleases
 
 libraryDependencies ++= Seq(
-  "org.scalatest" % "scalatest_2.11" % "2.2.6",
-  "org.scala-lang" % "scala-reflect" % "2.11.8",
-  "org.scala-lang.modules" %% "scala-xml" % "1.0.5",
-  "org.scalatra" %% "scalatra" % "2.4.0",
-  "org.scalatra" %% "scalatra-scalatest" % "2.4.0",
-  "org.eclipse.jetty" % "jetty-webapp" % "9.2.14.v20151106" % "container;compile",
-  "org.eclipse.jetty.orbit" % "javax.servlet" % "3.0.0.v201112011016",
-  "javax.servlet" % "javax.servlet-api" % "3.0.1" % "provided",
-  "ch.qos.logback" % "logback-classic" % "1.1.7" % "runtime",
-  "org.scalatra" %% "scalatra-auth" % "2.4.0",
-  "org.mongodb" %% "casbah" % "3.1.1"
+  "org.scalatra" %% "scalatra" % ScalatraVersion,
+  "org.scalatra" %% "scalatra-scalatest" % ScalatraVersion % "test",
+  "org.scalatra" %% "scalatra-scalate" % ScalatraVersion,
+  "org.scalatra" %% "scalatra-json" % ScalatraVersion,
+  "ch.qos.logback" % "logback-classic" % "1.2.3" % "runtime",
+  "org.eclipse.jetty" % "jetty-webapp" % "9.4.9.v20180320" % "container;compile",
+  "javax.servlet" % "javax.servlet-api" % "3.1.0" % "provided",
+  "org.json4s" %% "json4s-jackson" %  "3.5.4"
 )
 
-resolvers += "xsbt-web-plugin" at "https://dl.bintray.com/earldouglas/sbt-plugins"
+assemblyMergeStrategy in assembly := {
+  case PathList("javax", "servlet", xs @ _*)         => MergeStrategy.first
+  case PathList(ps @ _*) if ps.last endsWith ".html" => MergeStrategy.first
+  case "application.conf"                            => MergeStrategy.concat
+  case "unwanted.txt"                                => MergeStrategy.discard
+  case x =>
+    val oldStrategy = (assemblyMergeStrategy in assembly).value
+    oldStrategy(x)
+}
 
-lazy val root = (project in file("."))
-  .enablePlugins(JettyPlugin)
-  .settings(
-    name := "bdir-back",
-    version := "1.0.0",
-    scalaVersion := "2.11.8",
-    sbtVersion := "0.13.11"
-  )
+mainClass in assembly := Some("com.bdir.back.app.JettyLauncher")
+
+enablePlugins(JettyPlugin)
+//enablePlugins(ScalatraPlugin)

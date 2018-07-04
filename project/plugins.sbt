@@ -1,1 +1,2 @@
-addSbtPlugin("com.earldouglas" % "xsbt-web-plugin" % "2.1.0")
+addSbtPlugin("com.typesafe.sbt" % "sbt-twirl" % "1.3.13")
+addSbtPlugin("org.scalatra.sbt" % "sbt-scalatra" % "1.0.2")

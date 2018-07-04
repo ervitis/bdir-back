@@ -6,7 +6,7 @@ class ReadinessTests extends ScalatraFunSuite {
   addServlet(classOf[Readiness], "/_health/liveness")
 
   test("GET liveness") {
-    get("/_health/livenessgit a") {
+    get("/_health/liveness") {
       status should equal (200)
       body should equal ("{status: 'ok'}")
     }

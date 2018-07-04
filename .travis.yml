@@ -17,3 +17,6 @@ script:
   - sbt ++$TRAVIS_SCALA_VERSION assembly
 
   - find $HOME/.sbt -name "*.lock" | xargs rm
+
+notifications:
+  email: false
